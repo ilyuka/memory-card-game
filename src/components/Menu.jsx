@@ -1,25 +1,60 @@
 import React from "react";
+import { ChooseDifficultyMenu } from "./menus/ChooseDifficultyMenu";
+import { LoseMenu } from "./menus/LoseMenu";
+import { WinMenu } from "./menus/WinMenu";
 
 function Menu({
     gameStatus,
     setGameStatus,
-    difficuly,
+    difficulty,
     setDifficulty,
     score,
     setScore,
+    bestScore,
 }) {
     if (gameStatus === "choosingDifficulty") {
         return (
-            <div>
-                <button onClick={() => setDifficulty(4)}>easy(4)</button>
-                <button onClick={() => setDifficulty(8)}>medium(8)</button>
-                <button onClick={() => setDifficulty(16)}>hard(16)</button>
-                <button onClick={() => setGameStatus("playing")}>start</button>
-            </div>
+            <ChooseDifficultyMenu
+                difficulty={difficulty}
+                setDifficulty={setDifficulty}
+                setGameStatus={setGameStatus}
+            />
         );
-    } else {
-        return <h1> playig game should not be displayed </h1>;
     }
+    if (gameStatus === "lost") {
+        return (
+            <LoseMenu
+                score={score}
+                bestScore={bestScore}
+                setGameStatus={setGameStatus}
+            />
+        );
+    }
+    if (gameStatus === "won") {
+        return (
+            <WinMenu
+                score={score}
+                bestScore={bestScore}
+                setGameStatus={setGameStatus}
+                difficulty={difficulty}
+                setDifficulty={setDifficulty}
+            />
+        );
+    }
+    return (
+        <div>
+            <p>something went wrong...</p>
+            <button
+                type="button"
+                onClick={() => {
+                    setDifficulty(4);
+                    setGameStatus("playing");
+                }}
+            >
+                restart
+            </button>
+        </div>
+    );
 }
 
 export { Menu };

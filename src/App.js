@@ -11,11 +11,13 @@ function App() {
     const [selectedIds, setSelectedIds] = useState(new Set());
     const [gameStatus, setGameStatus] = useState("choosingDifficulty");
     const [score, setScore] = useState(0);
+    const [bestScore, setBestScore] = useState(0);
 
     useEffect(() => {
         const newArr = getNRandomElements(data, difficulty);
         setGameArr(newArr);
-    }, [difficulty]);
+        console.log("useEffect inside App");
+    }, [difficulty, gameStatus]);
 
     return (
         <div>
@@ -26,9 +28,21 @@ function App() {
                     setGameArr={setGameArr}
                     selectedIds={selectedIds}
                     setSelectedIds={setSelectedIds}
+                    score={score}
+                    setScore={setScore}
+                    bestScore={bestScore}
+                    setBestScore={setBestScore}
+                    setGameStatus={setGameStatus}
                 />
             ) : (
-                <Menu gameStatus={gameStatus} setGameStatus={setGameStatus} difficuly={difficulty} setDifficulty={setDifficulty}/>
+                <Menu
+                    gameStatus={gameStatus}
+                    setGameStatus={setGameStatus}
+                    difficulty={difficulty}
+                    setDifficulty={setDifficulty}
+                    score={score}
+                    bestScore={bestScore}
+                />
             )}
         </div>
     );

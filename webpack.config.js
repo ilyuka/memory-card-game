@@ -25,8 +25,8 @@ module.exports = {
                 test: /\.(js|jsx)$/, // .js and .jsx files
                 exclude: /node_modules/, // excluding the node_modules folder
                 resolve: {
-                extensions: [".js", ".jsx"]
-                    },
+                    extensions: [".js", ".jsx"],
+                },
                 use: {
                     loader: "babel-loader",
                 },
