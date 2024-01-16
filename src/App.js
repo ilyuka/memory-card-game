@@ -19,7 +19,8 @@ function App() {
     }, [difficulty, gameStatus]);
 
     return (
-        <div>
+        <div className="text-white">
+            <div className="stars"></div>
             {gameStatus === "playing" ? (
                 <Board
                     difficulty={difficulty}
