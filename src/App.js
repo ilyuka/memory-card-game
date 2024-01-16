@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { data } from "./data";
 import { Board } from "./components/Board.jsx";
 import { Menu } from "./components/Menu.jsx";
-
 import { getNRandomElements } from "./utils/getNRandomElements.js";
 
 function App() {

@@ -21,7 +21,11 @@ function Board({
     }, []);
     return (
         <div>
-            <Score score={score} bestScore={bestScore} />
+            <Score
+                score={score}
+                bestScore={bestScore}
+                difficulty={difficulty}
+            />
             <h2>Board</h2>
             {gameArr.map((card) => {
                 return (
