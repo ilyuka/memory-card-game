@@ -1,6 +1,12 @@
 import React from "react";
+import GameStatusButton from "../utils/GameStatusButton";
 
-function ChooseDifficultyMenu({ difficulty, setDifficulty, setGameStatus }) {
+function ChooseDifficultyMenu({
+  difficulty,
+  setDifficulty,
+  setGameStatus,
+  setScore,
+}) {
   return (
     <div className="flex flex-col items-center gap-4">
       <p className="mb-6 text-3xl">Memory card game!</p>
@@ -34,13 +40,13 @@ function ChooseDifficultyMenu({ difficulty, setDifficulty, setGameStatus }) {
       >
         hard (16)
       </button>
-      <button
-        type="button"
-        className="mt-5 max-w-min rounded-xl border border-solid border-lime-300 px-6 py-2 font-bold text-lime-300 hover:opacity-75"
-        onClick={() => setGameStatus("playing")}
-      >
-        START
-      </button>
+      <GameStatusButton
+        text="Start"
+        onClickMethod={() => {
+          setScore(0);
+          setGameStatus("playing");
+        }}
+      />
     </div>
   );
 }

@@ -1,40 +1,41 @@
 import React from "react";
+import GameStatusButton from "../utils/GameStatusButton";
 
 function WinMenu({
-    score,
-    bestScore,
-    setGameStatus,
-    difficulty,
-    setDifficulty,
+  score,
+  bestScore,
+  setGameStatus,
+  difficulty,
+  setDifficulty,
 }) {
-    function keepPlaying() {
-        if (difficulty !== 16) {
-            const newDifficulty = difficulty * 2;
-            console.log("new diff", newDifficulty);
-            setDifficulty(newDifficulty);
-            console.log(difficulty);
-        }
-        setGameStatus("playing");
+  function keepPlaying() {
+    if (difficulty !== 16) {
+      const newDifficulty = difficulty * 2;
+      setDifficulty(newDifficulty);
     }
-    return (
-        <div>
-            <h1>you won!</h1>
-            <p>your score {score}</p>
-            <p>your best score {bestScore}</p>
-            <button type="button" onClick={() => keepPlaying()}>
-                keep playing
-            </button>
-            <button type="button" onClick={() => setGameStatus("playing")}>
-                restart
-            </button>
-            <button
-                type="button"
-                onClick={() => setGameStatus("choosingDifficulty")}
-            >
-                change diff
-            </button>
-        </div>
-    );
+    setGameStatus("playing");
+  }
+  return (
+    <div className="flex flex-col items-center">
+      <h1 className="mb-6 text-3xl">You Won!</h1>
+      <p>Your Score: {score}</p>
+      <p>Your Best: {bestScore}</p>
+      <div className="mt-6 flex flex-col items-center">
+        <GameStatusButton
+          text="Keep Playing"
+          onClickMethod={() => keepPlaying()}
+        />
+        <GameStatusButton
+          text="Restart"
+          onClickMethod={() => setGameStatus("playing")}
+        />
+        <GameStatusButton
+          text="Change difficulty"
+          onClickMethod={() => setGameStatus("choosingDifficulty")}
+        />
+      </div>
+    </div>
+  );
 }
 
 export { WinMenu };

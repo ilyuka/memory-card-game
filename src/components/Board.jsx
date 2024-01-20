@@ -12,17 +12,17 @@ function Board({
   setScore,
   bestScore,
   setBestScore,
+  gameStatus,
   setGameStatus,
 }) {
   useEffect(() => {
-    setScore(0);
     setSelectedIds(new Set());
     console.log("useEffect inside board");
   }, []);
   return (
-    <div className="absolute left-2/4 top-2/4 max-h-full w-4/5 -translate-x-2/4 -translate-y-2/4">
+    <div className="flex min-h-screen w-4/5 flex-col p-4">
       <Score score={score} bestScore={bestScore} difficulty={difficulty} />
-      <div className="flex flex-wrap justify-center gap-8">
+      <div className="flex flex-grow flex-wrap content-center items-center justify-center gap-8">
         {gameArr.map((card) => (
           <Card
             key={card.id}

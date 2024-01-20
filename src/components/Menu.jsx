@@ -33,6 +33,7 @@ function Menu({
         difficulty={difficulty}
         setDifficulty={setDifficulty}
         setGameStatus={setGameStatus}
+        setScore={setScore}
       />
     );
   }
@@ -42,6 +43,7 @@ function Menu({
         score={score}
         bestScore={bestScore}
         setGameStatus={setGameStatus}
+        setScore={setScore}
       />
     );
   }
@@ -53,6 +55,7 @@ function Menu({
         setGameStatus={setGameStatus}
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        setScore={setScore}
       />
     );
   }
