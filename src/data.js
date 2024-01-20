@@ -72,7 +72,7 @@ const data = [
   {
     id: 15,
     name: "C#",
-    src: "c#.png",
+    src: "csharp.png",
   },
   {
     id: 16,
