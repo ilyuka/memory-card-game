@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ChooseDifficultyMenu } from "./menus/ChooseDifficultyMenu";
 import { LoseMenu } from "./menus/LoseMenu";
 import { WinMenu } from "./menus/WinMenu";
@@ -12,6 +12,17 @@ function Menu({
   setScore,
   bestScore,
 }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+    return () => {
+      setIsVisible(false);
+    };
+  }, []);
+
   let menuBody = (
     <div>
       <p>something went wrong...</p>

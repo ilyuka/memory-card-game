@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import shuffle from "../utils/shuffle";
+import "../css/Card.css";
 
 function Card({
   difficulty,
   card,
+  gameArr,
   setGameArr,
   selectedIds,
   setSelectedIds,
@@ -14,57 +16,78 @@ function Card({
   setGameStatus,
   boardScore,
   setBoardScore,
+  isFlipped,
+  setIsFlipped,
 }) {
+  const [toggle, setToggle] = useState(false);
+  let timer;
+
+  useEffect(() => {
+    console.log("useEffect inside card");
+
+    timer = setTimeout(() => {
+      setIsFlipped(false);
+    }, 100);
+  }, [toggle]);
+
+  // bg-slate-800 h-64 w-52 rounded-xl border-2 border-solid border-violet-500
   return (
-    <div className="h-64 w-52 rounded-xl border-2 border-solid border-violet-500 bg-slate-800 ">
-      <button
-        className="h-full w-full"
-        type="button"
-        onClick={() => {
-          if (selectedIds.has(card.id)) {
-            console.log("selected twice!");
-            setGameStatus("lost");
-            return;
-          }
-          setSelectedIds((prevSet) => {
-            const newSet = new Set([...prevSet]);
-            newSet.add(card.id);
-            if (newSet.size === difficulty) {
-              console.log("win!");
-              setGameStatus("won");
+    // prettier-ignore
+    <div className={`bg-slate-800 h-64 w-52 rounded-xl border-2 border-solid border-violet-500 card ${isFlipped ? "flipped" : ""}`}> 
+      <div className="card-back max-w-full max-h-full rounded-xl">
+        <img style={{height: '252px', width: '208px'}} className="rounded-xl" src={require("../../public/assets/card-back.png")} alt='card back'/>
+      </div>
+      <div className="card-front ">
+        <button
+          className="h-full w-full"
+          type="button"
+          onClick={() => {
+            if (selectedIds.has(card.id)) {
+              console.log("selected twice!");
+              setGameStatus("lost");
               return;
             }
-            console.log(newSet.size, difficulty);
-            return newSet;
-          });
-          setScore((prevScore) => {
-            const newScore = prevScore + 1;
-            if (newScore > bestScore) {
-              setBestScore(newScore);
-            }
-            setBoardScore(boardScore + 1);
-            return newScore;
-          });
 
-          setGameArr((arr) => {
-            const newArr = shuffle([...arr]);
-            return newArr;
-          });
+            setScore((prevScore) => {
+              const newScore = prevScore + 1;
+              if (newScore > bestScore) {
+                setBestScore(newScore);
+              }
+              setBoardScore(boardScore + 1);
+              return newScore;
+            });
+
+            setSelectedIds((prevSet) => {
+              const newSet = new Set([...prevSet]);
+              newSet.add(card.id);
+              if (newSet.size === difficulty) {
+                setGameStatus("won");
+                return;
+              }
+              return newSet;
+            });
+
+            setIsFlipped(true);
+            timer = setTimeout(() => {
+              setGameArr((arr) => {
+                const newArr = shuffle([...arr]);
+                return newArr;
+              });
+              setToggle(toggl => !toggl);
+            }, 1000)
+            
         }}
-      >
-        <div
-          className="flex w-full items-center justify-center p-8"
-          //   style={{ maxHeight: "80%" }}
         >
-          <img
-            className="h-full w-full object-contain"
-            src={require(`../../public/assets/cardImages/${card.src}`)}
-            alt={card.name}
-          />
-        </div>
-
-        <p>{card.name}</p>
-      </button>
+          <div className="flex w-full items-center justify-center p-8">
+            <img
+              className="h-full w-full object-contain"
+              src={require(`../../public/assets/cardImages/${card.src}`)}
+              alt={card.name}
+            />
+          </div>
+          <p>{card.name}</p>
+        </button>
+      </div>
     </div>
   );
 }

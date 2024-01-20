@@ -9,7 +9,7 @@ function ChooseDifficultyMenu({
 }) {
   return (
     <div className="flex flex-col items-center gap-4">
-      <p className="mb-6 text-3xl">Memory card game!</p>
+      <p className="mb-6 text-3xl">Memory Card Game!</p>
       <p className="text-sm italic">Choose your difficulty...</p>
       <button
         className={

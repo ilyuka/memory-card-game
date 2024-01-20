@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "./Card.jsx";
 import { Score } from "./Score.jsx";
 
@@ -17,9 +17,12 @@ function Board({
   boardScore,
   setBoardScore,
 }) {
+  const [isFlipped, setIsFlipped] = useState(true);
+
   useEffect(() => {
     setSelectedIds(new Set());
     setBoardScore(0);
+    setIsFlipped(true);
     console.log("useEffect inside board");
   }, []);
   return (
@@ -36,6 +39,7 @@ function Board({
             key={card.id}
             difficulty={difficulty}
             card={card}
+            gameArr={gameArr}
             setGameArr={setGameArr}
             selectedIds={selectedIds}
             setSelectedIds={setSelectedIds}
@@ -46,6 +50,8 @@ function Board({
             setGameStatus={setGameStatus}
             boardScore={boardScore}
             setBoardScore={setBoardScore}
+            isFlipped={isFlipped}
+            setIsFlipped={setIsFlipped}
           />
         ))}
       </div>
