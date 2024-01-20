@@ -12,6 +12,8 @@ function Card({
   bestScore,
   setBestScore,
   setGameStatus,
+  boardScore,
+  setBoardScore,
 }) {
   return (
     <div className="h-64 w-52 rounded-xl border-2 border-solid border-violet-500 bg-slate-800 ">
@@ -40,6 +42,7 @@ function Card({
             if (newScore > bestScore) {
               setBestScore(newScore);
             }
+            setBoardScore(boardScore + 1);
             return newScore;
           });
 

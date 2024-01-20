@@ -1,6 +1,6 @@
 import React from "react";
 
-function Score({ score, bestScore, difficulty }) {
+function Score({ score, bestScore, boardScore, difficulty }) {
   return (
     <div className="mb-8 flex flex-col items-center">
       <div className="flex gap-4">
@@ -9,7 +9,7 @@ function Score({ score, bestScore, difficulty }) {
       </div>
       <div>
         <p>
-          {score}/{difficulty}
+          {boardScore} / {difficulty}
         </p>
       </div>
     </div>

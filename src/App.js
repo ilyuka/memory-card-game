@@ -11,6 +11,7 @@ function App() {
   const [gameStatus, setGameStatus] = useState("choosingDifficulty");
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [boardScore, setBoardScore] = useState(0);
 
   useEffect(() => {
     const newArr = getNRandomElements(data, difficulty);
@@ -34,6 +35,8 @@ function App() {
           setBestScore={setBestScore}
           gameStatus={gameStatus}
           setGameStatus={setGameStatus}
+          boardScore={boardScore}
+          setBoardScore={setBoardScore}
         />
       ) : (
         <Menu
