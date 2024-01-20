@@ -23,14 +23,11 @@ function Card({
   let timer;
 
   useEffect(() => {
-    console.log("useEffect inside card");
-
     timer = setTimeout(() => {
       setIsFlipped(false);
     }, 100);
   }, [toggle]);
 
-  // bg-slate-800 h-64 w-52 rounded-xl border-2 border-solid border-violet-500
   return (
     // prettier-ignore
     <div className={`bg-slate-800 h-64 w-52 rounded-xl border-2 border-solid border-violet-500 card ${isFlipped ? "flipped" : ""}`}> 
@@ -43,7 +40,6 @@ function Card({
           type="button"
           onClick={() => {
             if (selectedIds.has(card.id)) {
-              console.log("selected twice!");
               setGameStatus("lost");
               return;
             }

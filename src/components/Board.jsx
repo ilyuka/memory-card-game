@@ -12,7 +12,6 @@ function Board({
   setScore,
   bestScore,
   setBestScore,
-  gameStatus,
   setGameStatus,
   boardScore,
   setBoardScore,
@@ -23,7 +22,6 @@ function Board({
     setSelectedIds(new Set());
     setBoardScore(0);
     setIsFlipped(true);
-    console.log("useEffect inside board");
   }, []);
   return (
     <div className="flex min-h-screen w-4/5 flex-col p-4">

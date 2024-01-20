@@ -12,17 +12,6 @@ function Menu({
   setScore,
   bestScore,
 }) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsVisible(true);
-    }, 1000);
-    return () => {
-      setIsVisible(false);
-    };
-  }, []);
-
   let menuBody = (
     <div>
       <p>something went wrong...</p>

@@ -16,7 +16,6 @@ function App() {
   useEffect(() => {
     const newArr = getNRandomElements(data, difficulty);
     setGameArr(newArr);
-    console.log("useEffect inside App");
   }, [gameStatus]);
 
   return (
